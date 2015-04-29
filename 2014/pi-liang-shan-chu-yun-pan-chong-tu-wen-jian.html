@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="description" content="Share my story with you"> -->
+
+    <title>Kython Liao</title>
+
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <!-- <link rel="stylesheet" href="/theme/css/bootstrap-theme.min.css"> -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/main.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+<div class="sidebar col-xs-12 col-md-3">
+    <div class="cover-img" style="background-image:url('http://upload.jianshu.io/daily_images/images/BKx3sA9CumMFpUzQJTFx.jpg')">
+        <div class="usr-meta">
+                <a href="/index.html">
+                    <img class="img-circle avatar" alt="Home" src="https://avatars2.githubusercontent.com/u/7881268?v=3&s=460">
+                </a>
+                <h3 class="brand-title text-capitalize"><a href="/">Kython Liao</a></h3>
+                <p class="brand-tagline">PHD-Candidate.<br> Enjoy Python & Mathematica.<br> Living in Shanghai.</p> 
+                    <p class="menu-item"><a href="/index.html">Home</a></p>
+                    <p class="menu-item"><a href="/pages/about-me.html">About</a></p>
+                    <p class="menu-item"><a href="/archives.html">Archives</a></p>
+                    <p class="menu-item"><a href="/pages/marryu.html">Marry U</a></p>
+  
+                <p class="social">
+                        <a href="http://github.com/kython">
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
+                        <a href="http://weibo.com/abcy618">
+                            <i class="fa fa-weibo fa-2x"></i>
+                        </a>
+                <p>
+        </div>
+    </div>
+</div>      <div class="blog-main col-xs-12 col-md-9">
+          <div class="content">
+            <div class="post">
+              <h1>批量删除云盘冲突文件</h1>
+              <p class="post-meta">
+                // Tags:
+                  <a class="post-category" href="/tag/mahtematica.html">Mahtematica</a>
+                  &middot; Created: 2014-08-24 16:20:16               </p>
+              <div><h3>需求</h3>
+<p>用微云网盘在多个终端同步文件，可能因为某种网络原因或者网盘自身bug导致产生了大量冗余冲突文件，分布在你网盘的各个文件夹内，如 filename(与kython-PC的冲突版本).docx、20131012(0).jpg 等等。手动删除是不现实的。</p>
+<h3>Mathematica 发威</h3>
+<p>这里给出一段代码，是刚刚发现自己网盘相册中很多相片被复制了很多副本(多达400多份)，类似这样 20131012(0).JPG、20131012(1).JPG、20131012(2).JPG  等等，我想把这些文件删掉。于是有了下面这段 <em>Mathematica</em> 代码：</p>
+<div class="highlight"><pre><span class="nt">dir</span> <span class="o">=</span> <span class="s2">&quot;F:\\Weiyun Album&quot;</span><span class="o">;</span>
+<span class="nt">SetDirectory</span><span class="cp">[</span><span class="nb">dir</span><span class="cp">]</span><span class="o">;</span>
+<span class="nt">files</span> <span class="o">=</span> <span class="nt">FileNames</span><span class="cp">[</span><span class="s2">&quot;*(*).JPG&quot;</span><span class="cp">]</span><span class="o">;</span>
+<span class="nt">DeleteFile</span><span class="cp">[</span><span class="nx">files</span><span class="cp">]</span>
+</pre></div>
+
+
+<p><em>FileNames</em> 第一个参数是 <em>pattern</em>,可以用 <em>Mathematica</em> 模式写，也支持通配符*，如上面这段代码就用的通配符。</p>
+<p>批量重命名，也是类似的，稍微修改下上面这段代码就可以了。</p></div>
+            </div>
+            <p class="go-top"><a href="#"><i class="fa fa-arrow-circle-o-up"></i> Go Top</a></p>
+          </div>
+<footer class="footer">
+    <p>
+    	&copy; 2015 Designed by Kython Liao &ndash;
+        Built with <a href="http://getbootstrap.com/">Bootstrap</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>    </div>
+  </div>
+</div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="description" content="Share my story with you"> -->
+
+    <title>Kython Liao</title>
+
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <!-- <link rel="stylesheet" href="/theme/css/bootstrap-theme.min.css"> -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/main.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+<div class="sidebar col-xs-12 col-md-3">
+    <div class="cover-img" style="background-image:url('http://upload.jianshu.io/daily_images/images/BKx3sA9CumMFpUzQJTFx.jpg')">
+        <div class="usr-meta">
+                <a href="/index.html">
+                    <img class="img-circle avatar" alt="Home" src="https://avatars2.githubusercontent.com/u/7881268?v=3&s=460">
+                </a>
+                <h3 class="brand-title text-capitalize"><a href="/">Kython Liao</a></h3>
+                <p class="brand-tagline">PHD-Candidate.<br> Enjoy Python & Mathematica.<br> Living in Shanghai.</p> 
+                    <p class="menu-item"><a href="/index.html">Home</a></p>
+                    <p class="menu-item"><a href="/pages/about-me.html">About</a></p>
+                    <p class="menu-item"><a href="/archives.html">Archives</a></p>
+                    <p class="menu-item"><a href="/pages/marryu.html">Marry U</a></p>
+  
+                <p class="social">
+                        <a href="http://github.com/kython">
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
+                        <a href="http://weibo.com/abcy618">
+                            <i class="fa fa-weibo fa-2x"></i>
+                        </a>
+                <p>
+        </div>
+    </div>
+</div>      <div class="blog-main col-xs-12 col-md-9">
+          <div class="content">
+            <div class="post">
+              <h1>期刊全名转缩写</h1>
+              <p class="post-meta">
+                // Tags:
+                  <a class="post-category" href="/tag/mahtematica.html">Mahtematica</a>
+                  &middot; Created: 2015-04-23 19:12:25               </p>
+              <div><p>平时文献多是通过 Google Scholar 收集的，用 bib 导出。
+这样导出的 Journal 文献其期刊名是全名，而正式发表的文章，期刊名称多用缩写。
+这次写完大论文，需要把期刊名替换为缩写名称，虽然可以通过手动查找-替换实现，但工作量依然很大。
+于是用Mathematica写了一个小程序，专门干这份dirty work。</p>
+<p>基本的思路是：</p>
+<ol>
+<li>先到网上去弄一份期刊全名和缩写名对应的数据库，建立全名-&gt;缩写名对应的替换规则。</li>
+<li>匹配 bib 文献数据库的期刊名称，用上面建立的全名-&gt;缩写名规则替换。</li>
+</ol></div>
+            </div>
+            <p class="go-top"><a href="#"><i class="fa fa-arrow-circle-o-up"></i> Go Top</a></p>
+          </div>
+<footer class="footer">
+    <p>
+    	&copy; 2015 Designed by Kython Liao &ndash;
+        Built with <a href="http://getbootstrap.com/">Bootstrap</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>    </div>
+  </div>
+</div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>
