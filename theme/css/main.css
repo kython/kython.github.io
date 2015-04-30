@@ -105,6 +105,7 @@ a:focus {
 }*/
 
 .go-top {
+	display: block;
 	padding: 2em 0;
 }
 
