@@ -5,7 +5,8 @@
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
-  font-size: 16px;
+  font-size: 17px;
+  line-height: 30px;
   text-align: justify;
 }
 
@@ -118,7 +119,7 @@ body {
 }
 
 .tagline {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 
