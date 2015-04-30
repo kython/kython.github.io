@@ -1,12 +1,6 @@
 /* 超小屏幕（手机，小于 768px） */
 /* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 Bootstrap 是移动设备优先的吗？） */
 
-
-.body {
-	font-family: "PT Sans", "Helvetica Neue", helvetica, "lucida grande", "lucida sans unicode", lucida, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-
-}
-
 .container .row {
 	margin-left: 0;
 	margin-right: 0;
@@ -115,17 +109,35 @@ a:focus {
 }
 
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
 
-/*	.sidebar {
+	/*.sidebar {
 		width: 280px;
 		height: 100%;
 		position: fixed;
 		top: 0;
 		left: 0;
-	}
+	}*/
 
-	.blog-main {
+	.sidebar {
+  		position: fixed;
+  		top: 0;
+  		bottom: 0;
+  		left: 0;
+  		z-index: 1000;
+  		display: block;
+  		padding: 20px;
+  		overflow-x: hidden;
+  		overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  		background-color: white;
+  		border-right: 1px solid #eee;
+  	}
+
+  	.main {
+  		padding: 0 40px;
+  	}
+
+	/*.main {
 		width: 75%;
 		position: absolute;
 		top: 0;
@@ -134,7 +146,6 @@ a:focus {
 	}*/
 
 	.usr-meta {
-		padding: 2em;
 		text-align: right;
 	}
 
