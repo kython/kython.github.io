@@ -1,38 +1,53 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="Memo of story of you and me">
-    <meta name="author" content="Kython Liao">
-    <!-- <link rel="icon" href="../../favicon.ico"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="description" content="Share my story with you"> -->
 
-    <title>Marry You</title>
+    <title>Kython Liao</title>
 
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
-    <!-- <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <!-- <link rel="stylesheet" href="/theme/css/bootstrap-theme.min.css"> -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/main.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+</head>
 
-    <!-- Customles for this template -->
-    <link href="/theme/css/marryu.css" rel="stylesheet">
-
-  </head>
-<!-- NAVBAR
-================================================== -->
-  <body>
+<body>
+<div "container-fluid">
+    <div "row">
+<div class="sidebar col-xs-12 col-md-3">
+    <!-- <div class="cover-img" style="background-image:url('http://upload.jianshu.io/daily_images/images/BKx3sA9CumMFpUzQJTFx.jpg')"> -->
+        <div class="usr-meta">
+                <a href="/index.html">
+                    <img class="img-circle avatar" alt="Home" src="https://avatars2.githubusercontent.com/u/7881268?v=3&s=460">
+                </a>
+                <h3 class="brand-title text-capitalize"><a href="/">Kython Liao</a></h3>
+                <p class="brand-tagline">PHD-Candidate.<br> Enjoy Python & Mathematica.<br> Living in Shanghai.</p> 
+                    <p class="menu-item"><a href="/index.html">Home</a></p>
+                    <p class="menu-item"><a href="/pages/about-me.html">About</a></p>
+                    <p class="menu-item"><a href="/archives.html">Archives</a></p>
+                    <p class="menu-item"><a href="/pages/marryu.html">Marry U</a></p>
+  
+                <p class="social">
+                        <a href="http://github.com/kython">
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
+                        <a href="http://weibo.com/abcy618">
+                            <i class="fa fa-weibo fa-2x"></i>
+                        </a>
+                <p>
+        </div>
+    <!-- </div> -->
+</div>    	<div class="col-xs-12 col-md-9 blog-main">
+    	    <div class="content">
+    	        <h3 class="content-subhead">Marry You</h3>
+    	        <div>
   <div class="header">
       <div class="container">
         <a href="#" class="logo-icon">
@@ -40,7 +55,7 @@
         </a>
 
         <ul class="menu">
-          <li><a href="/index.html">Home</a></li>
+          <li><a href="{{ SITEURL }}/index.html">Home</a></li>
           <li><a href="#">DIY Wedding</a></li>
           <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More<span class="caret"></span></a>
@@ -107,7 +122,7 @@
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">初识<span class="text-muted"></span></h2>
-          <p>这是我们的第一个暑假. 你拥有了你人生的第一份工作, 第一次走上三寸讲台, 用绘画向小朋友传递爱心与知识. 而我也第一次正式走进厨房, 成为了真正的家庭煮男. 去尝试属于自己的第一道跳水兔, 啤酒鸭和水煮鱼, 这让我领略了书本外的乐趣.<br/>
+          <p>这是我们的第一个暑假. 你拥有了你人生的第一份工作, 第一次走上三寸讲台, 用绘画向小朋友传递爱心与知识. 而我也第一次正式走进厨房, 成为了真正的家庭煮男. 去尝试属于自己的第一道跳水兔, 啤酒鸭和水煮鱼, 这让我领略了书本外的乐趣.<br />
           这个暑假, 我们彼此开拓着我们各自的领域, 收获颇丰.</p>
         </div>
         <div class="col-md-5">
@@ -120,7 +135,7 @@
       <div class="row featurette">
         <div class="col-md-7 col-md-push-5">
           <h2 class="featurette-heading" style="margin-top: 50px">1830 公里<span class="text-muted"></span></h2>
-          <p>我在上海, 你在成都, 飞越1830公里, 迎来我们的相聚. 从接机时的砰然心跳，热情相拥, 到一起逛街吃饭, 一起看电影, 更有一起疯狂30连拍. 晚上看电视剧时讨论该如何过好两个人的生活, 也一起看书, 念书给对方听. 还有你为我敷面膜, 我帮你洗头. 以及你嫉妒铺盖面阿姨请我吃铺盖面, 你却叫小米辣叔叔给你男朋友看手相. <br/>
+          <p>我在上海, 你在成都, 飞越1830公里, 迎来我们的相聚. 从接机时的砰然心跳，热情相拥, 到一起逛街吃饭, 一起看电影, 更有一起疯狂30连拍. 晚上看电视剧时讨论该如何过好两个人的生活, 也一起看书, 念书给对方听. 还有你为我敷面膜, 我帮你洗头. 以及你嫉妒铺盖面阿姨请我吃铺盖面, 你却叫小米辣叔叔给你男朋友看手相. <br />
           短暂相聚, 我们初初学到了管控彼此小情绪, 宽容理解, 融洽相处.</p>
         </div>
         <div class="col-md-5 col-md-pull-7">
@@ -327,5 +342,18 @@
     <script src="../../assets/js/vendor/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+  </div>
+    	    </div>
+<footer class="footer">
+    <p>
+    	&copy; 2015 Designed by Kython Liao &ndash;
+        Built with <a href="http://getbootstrap.com/">Bootstrap</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>    	</div>
+    </div>
+</div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
 </html>
