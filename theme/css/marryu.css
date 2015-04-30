@@ -62,7 +62,7 @@ body {
 -------------------------------------------------- */
 
   .jumbotron {
-  /*background-image:url('http://fmn.rrfmn.com/fmn058/20130416/1740/xlarge_9PLp_6a7e0000a3da118c.jpg');*/
+  background-image:url('http://fmn.rrfmn.com/fmn058/20130416/1740/xlarge_9PLp_6a7e0000a3da118c.jpg');
   background-position: 0 26%;
   height: 700px;
   background-repeat: no-repeat;
@@ -109,6 +109,10 @@ body {
 .marketing .col-lg-4 p {
   margin-right: 10px;
   margin-left: 10px;
+}
+
+.avatar {
+  margin: 0 auto;
 }
 
 

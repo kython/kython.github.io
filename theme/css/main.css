@@ -18,7 +18,7 @@ a:focus {
     color: #d9534f;
 }
 
-.cover-img {
+/*.cover-img {
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -27,7 +27,7 @@ a:focus {
 	background-position: center center;
 	background-size: cover;
 	background-color: #6699cc;
-}
+}*/
 
 .usr-meta {
 	padding: 15px;
