@@ -6,6 +6,7 @@ body {
   padding-bottom: 40px;
   color: #5a5a5a;
   font-size: 16px;
+  text-align: justify;
 }
 
 
@@ -114,6 +115,10 @@ body {
 
 .avatar {
   margin: 0 auto;
+}
+
+.tagline {
+  font-size: 14px;
 }
 
 
