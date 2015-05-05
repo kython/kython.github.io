@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block title %}all posts // {{ super() }}{% endblock title %}
+{% block pagetitle %}all posts{% endblock pagetitle %}
+
+
+{% block content %}
+<div "container-fluid">
+    <div "row">
+        {% include 'sidebar.html' %}
+        <div class="col-xs-12 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="content">
+                <h3 class="content-subhead">All posts</h3>
+                {% for article in dates %}
+                    <div class="archive-item">
+                        <h4 class="archive-date">{{ article.date|strftime('%Y') }}</h4>
+                        <h5 class="archive-date">{{ article.date|strftime('%d %B') }}</h5>
+                        <div class="archive-post"><a href="{{ article.url }}">{{ article.title }}</a></div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% include 'footer.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

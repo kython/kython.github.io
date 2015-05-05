@@ -1,0 +1,26 @@
+Title: 批量删除云盘冲突文件
+Date: 2014-08-24 16:20:16
+Categories: Mathematica
+Tags: Mahtematica
+Summary: 有很多小工具都可以批量删除文件或者批量重命名。当然你也可以用你擅长的语言写一段代码来实现。这篇文章向大家展示 Mathematica 实现批量删除文件。其优点是代码精简，模式匹配强大。 
+---
+
+### 需求
+
+用微云网盘在多个终端同步文件，可能因为某种网络原因或者网盘自身bug导致产生了大量冗余冲突文件，分布在你网盘的各个文件夹内，如 filename(与kython-PC的冲突版本).docx、20131012(0).jpg 等等。手动删除是不现实的。
+
+### Mathematica 发威
+
+这里给出一段代码，是刚刚发现自己网盘相册中很多相片被复制了很多副本(多达400多份)，类似这样 20131012(0).JPG、20131012(1).JPG、20131012(2).JPG  等等，我想把这些文件删掉。于是有了下面这段 *Mathematica* 代码：
+~~~
+dir = "F:\\Weiyun Album";
+SetDirectory[dir];
+files = FileNames["*(*).JPG"];
+DeleteFile[files]
+~~~
+*FileNames* 第一个参数是 *pattern*,可以用 *Mathematica* 模式写，也支持通配符*，如上面这段代码就用的通配符。
+
+批量重命名，也是类似的，稍微修改下上面这段代码就可以了。
+
+
+

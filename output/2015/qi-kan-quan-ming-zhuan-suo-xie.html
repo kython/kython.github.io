@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="description" content="Share my story with you"> -->
+
+    <title>Kython Liao</title>
+
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <!-- <link rel="stylesheet" href="/theme/css/bootstrap-theme.min.css"> -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/main.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+<div class="col-xs-12 col-sm-3 col-md-2 sidebar">
+    <!-- <div class="cover-img" style="background-image:url('http://upload.jianshu.io/daily_images/images/BKx3sA9CumMFpUzQJTFx.jpg')"> -->
+        <div class="usr-meta">
+                <a href="/index.html">
+                    <img class="img-circle avatar" alt="Home" src="https://avatars2.githubusercontent.com/u/7881268?v=3&s=460">
+                </a>
+                <h3 class="brand-title text-capitalize"><a href="/">Kython Liao</a></h3>
+                <p class="brand-tagline">PHD-Candidate.<br> Enjoy Python & Mathematica.<br> Living in Shanghai.</p> 
+                    <p class="menu-item"><a href="/index.html">Home</a></p>
+                    <p class="menu-item"><a href="/pages/about-me.html">About</a></p>
+                    <p class="menu-item"><a href="/pages/marryu.html">Moments</a></p>
+  
+                <p class="social">
+                        <a href="http://github.com/kython">
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
+                        <a href="http://weibo.com/abcy618">
+                            <i class="fa fa-weibo fa-2x"></i>
+                        </a>
+                <p>
+        </div>
+    <!-- </div> -->
+</div>      <div class="col-xs-12 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div class="content">
+            <div class="post">
+              <h1>期刊全名转缩写</h1>
+              <p class="post-meta">
+                // Tags:
+                  <a class="post-category" href="/tag/mahtematica.html">Mahtematica</a>
+                  &middot; Created: 2015-04-23 19:12:25               </p>
+              <div><p>平时文献多是通过Google Scholar收集，导出为bib格式。
+这样导出的Journal文献其期刊名是全名，而正式发表的文章，期刊名多用缩写。
+这次写完大论文，需要把期刊名替换为缩写，虽然可以通过手动查找-替换的方法完成，但工作量依然很大。
+于是用Mathematica写了一个小程序，专门做这份繁琐的工作。</p>
+<p>基本的思路是：</p>
+<ol>
+<li>先到网上去获取一份期刊全名和缩写名对应的数据库，建立全名-&gt;缩写名对应的替换规则。</li>
+<li>匹配 bib 文献数据库的期刊名称，用上面建立的全名-&gt;缩写名规则替换。</li>
+</ol>
+<h3>数据库获取</h3>
+<p>在<a href="http://woodward.library.ubc.ca/research-help/journal-abbreviations/">UBC大学的图书馆</a>网站上下载了一份包含期刊全名和缩写名对应的html源码。
+通过Mathematica强大的模式匹配提取了其中的期刊名称和对应缩写，并存储为二维数组，第一列为全名，第二列为其对应缩写。
+观察html源码，最后分两种模式提取期刊名称，代码如下：</p>
+<div class="highlight"><pre>journalsPart1 = 
+  Rest@StringCases[downloadedHtmlContent, 
+    Shortest[
+      &quot;<span class="nt">&lt;tr</span> <span class="na">style=</span><span class="s">\&quot;background-color:</span> <span class="err">rgb(221,</span> <span class="err">221,</span> <span class="err">221);\&quot;</span><span class="nt">&gt;&lt;td&gt;</span>&quot; ~~ 
+       abbr___ ~~ &quot;<span class="nt">&lt;/td&gt;&lt;td&gt;</span>&quot; ~~ fullname___ ~~ 
+       &quot;<span class="nt">&lt;/td&gt;&lt;/tr&gt;</span>&quot;] -&gt; {StringTrim@fullname, StringTrim@abbr}];
+
+journalsPart2 = 
+  Rest@StringCases[downloadedHtmlContent, 
+    Shortest[
+      &quot;<span class="nt">&lt;tr&gt;&lt;td&gt;</span>&quot; ~~ abbr___ ~~ &quot;<span class="nt">&lt;/td&gt;&lt;td&gt;</span>&quot; ~~ fullname___ ~~ 
+       &quot;<span class="nt">&lt;/td&gt;&lt;/tr&gt;</span>&quot;] -&gt; {StringTrim@fullname, StringTrim@abbr}];
+
+fullnameAbbr = Join[journalsPart1, journalsPart2];
+</pre></div>
+
+
+<p>这个数据库总共有5758条期刊全名及其对应缩写，覆盖领域相当广泛。</p>
+<h3>建立替换规则</h3>
+<p>将以上抓取的数据建立全名-&gt;缩写名对应的替换规则，这步就非常简单了，代码如下：</p>
+<div class="highlight"><pre>journalToAbbrRules = Rule[
+     First@#, Last@#
+     ] &amp; /@ fullnameAbbr;
+</pre></div>
+
+
+<h3>运用替换规则</h3>
+<p>这里一开始使用的直接替换方法，即直接搜索待替换的文献数据库，当匹配到数据库中的期刊全名就将其替换掉。这种方法虽然思路直观但效率不高。代码如下：</p>
+<div class="highlight"><pre>refsToAbbr = StringReplace[yourRefs, journalToAbbrRules, 
+  IgnoreCase -&gt; True];
+</pre></div>
+
+
+<p>另一种优化的替换方式，注意到期刊名在bib文件中以journal = {"期刊名"}这种Pattern存在的，于是可以将替换方法优化为：</p>
+<div class="highlight"><pre>refsToAbbrOptimized = 
+  StringReplace[yourRefs, 
+   Shortest[
+     &quot;journal={&quot; ~~ journalname___ ~~ &quot;}&quot;] :&gt; (&quot;journal={&quot; ~~ 
+      StringReplace[journalname, journalToAbbrRules, 
+       IgnoreCase -&gt; True] ~~ &quot;}&quot;)];
+</pre></div>
+
+
+<p>以上两种方法，以我自己的100篇文献数据库为例，第一种方法耗时约26秒，第二种方法仅耗时约0.4秒。</p>
+<h3>Try using Machine Learning</h3>
+<p>替换过程中发现一个小的bug，谷歌学术下载回来的PRB文献，其全称为：Physical Review B，而上面下载到的数据库，PRB的全名为：Phys. Rev. B: Condens. Matter。
+于是按照上面的字符串匹配替换的方法，该条文献就会被忽略。</p>
+<p>Mathematica 10新增了机器学习的函数，用法也非常简单。于是被我拿出来在此处把玩一番，因为是直接拿来运用，未经优化，可能效率不高，仅供参考。
+首先将上面建立的替换规则，来机器学习一番，其实就是：</p>
+<div class="highlight"><pre>abbrDatabase = Classify[journalToAbbrRules]
+</pre></div>
+
+
+<p>于是我们可以发现，此时输入Physical Review B就会主动地去匹配数据库中的Phys. Rev. B: Condens. Matter这本杂志了：</p>
+<div class="highlight"><pre>In:= abbrDatabase[&quot;Physical Review B&quot;]
+Out:= &quot;Phys. Rev. B: Condens. Matter&quot;
+</pre></div></div>
+            </div>
+            <p class="go-top"><a href="#"><i class="fa fa-arrow-circle-o-up"></i> Go Top</a></p>
+          </div>
+<footer class="footer">
+    <p>
+    	&copy; 2015 Designed by Kython Liao &ndash;
+        Built with <a href="http://getbootstrap.com/">Bootstrap</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>    </div>
+  </div>
+</div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>

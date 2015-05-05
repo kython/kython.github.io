@@ -1,0 +1,99 @@
+
+.jumbotron {
+  background-image:url('http://fmn.rrfmn.com/fmn058/20130416/1740/xlarge_9PLp_6a7e0000a3da118c.jpg');
+  background-position: 0 26%;
+  height: 700px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.jumbotron .container {
+  position: relative;
+  top: 260px;
+  left: auto;
+  right: auto;
+}
+
+.jumbotron h1 {
+  color: #fff;
+  font-size: 68px;  
+  font-family: "lucida grande", "lucida sans unicode", lucida, "Helvetica Neue", helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.jumbotron p {
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+}
+
+.jumbotron a {
+  color: #fff;
+}
+
+.ten-little-things {
+  background-color: #efefef;
+  border-bottom: 1px solid #dbdbdb
+}
+
+.ten-little-things h2 {
+  margin-top: 50px;
+  color: #3b3b3b;
+  font-size: 36px;
+  font-weight: bold;
+  font-family: fontello, icomoon, tmt-icons, topbar, sv, MD_Font, octicons, 'Glyphicons Halflings', FontAwesome, dashicons, iconfont, 'Segoe UI', 'WenQuanYi Micro Hei', 'WenQuanYi Micro Hei Mono', 'Microsoft Yahei', 'Microsoft Yahei Mono', ，, 微软雅黑, sans-serif;
+}
+
+.ten-little-things p {
+  font-size: 17px;
+  margin-bottom: 13px;
+  font-family: fontello, icomoon, tmt-icons, topbar, sv, MD_Font, octicons, 'Glyphicons Halflings', FontAwesome, dashicons, iconfont, 'Segoe UI', 'WenQuanYi Micro Hei', 'WenQuanYi Micro Hei Mono', 'Microsoft Yahei', 'Microsoft Yahei Mono', ，, 微软雅黑, sans-serif;
+}
+
+.story {
+  background-color: #f7f7f7;
+}
+
+.story h3 {
+  font-family: 'Shift', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.story p {
+  margin-right: 30px;
+  text-align: justify;
+  font-size: 15px;
+}
+
+.lastwords {
+  background-color: #f7f7f7;
+}
+
+.lastwords h2 {
+  margin-left: 15px;
+}
+
+.lastwords p {
+  padding: 15px;
+  text-align: justify;
+}
+
+.footer {
+  background: #efefef;
+}
+
+.footer a {
+  height: 60px;
+  line-height: 60px;
+  color: #5a5a5a;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 14px;
+  text-align: center;
+}
+
+.footer li {
+  display: inline;
+}
