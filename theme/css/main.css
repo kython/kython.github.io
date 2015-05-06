@@ -44,7 +44,6 @@ a:focus {
 .brand-tagline {
 	margin-bottom: 1.5em;
 	font-size: 0.8em;
-	/*color: #717171;*/
 	color: #333333;
 }
 
@@ -82,7 +81,7 @@ a:focus {
 .content {
 	padding: 1em;
 	text-align: justify;
-	text-justify: inter-ideograph;
+	/*text-justify: inter-ideograph;*/
 }
 
 .post {
@@ -115,14 +114,6 @@ a:focus {
 
 @media (min-width: 768px) {
 
-	/*.sidebar {
-		width: 280px;
-		height: 100%;
-		position: fixed;
-		top: 0;
-		left: 0;
-	}*/
-
 	.sidebar {
   		position: fixed;
   		top: 0;
@@ -140,14 +131,6 @@ a:focus {
   	.main {
   		padding: 0 40px;
   	}
-
-	/*.main {
-		width: 75%;
-		position: absolute;
-		top: 0;
-		left: 280px;
-		overflow: auto;
-	}*/
 
 	.usr-meta {
 		text-align: right;
