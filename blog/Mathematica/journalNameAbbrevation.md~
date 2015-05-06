@@ -2,10 +2,7 @@ Title: 期刊全名转缩写
 Date: 2015-04-23 19:12:25
 Categories: Mathematica
 Tags: Mahtematica
-Summary: 平时文献多是通过Google Scholar收集，导出为bib格式。
-这样导出的Journal文献其期刊名是全名，而正式发表的文章，期刊名多用缩写。
-这次写完大论文，需要把期刊名替换为缩写，虽然可以通过手动查找-替换的方法完成，但工作量依然很大。
-于是用Mathematica写了一个小程序，专门做这份繁琐的工作。
+Summary: 平时文献多是通过Google Scholar收集，导出为bib格式。这样导出的Journal文献其期刊名是全名，而正式发表的文章，期刊名多用缩写。这次写完大论文，需要把期刊名替换为缩写，虽然可以通过手动查找-替换的方法完成，但工作量依然很大。于是用Mathematica写了一个小程序，专门做这份繁琐的工作。
 
 平时文献多是通过Google Scholar收集，导出为bib格式。
 这样导出的Journal文献其期刊名是全名，而正式发表的文章，期刊名多用缩写。
@@ -18,7 +15,7 @@ Summary: 平时文献多是通过Google Scholar收集，导出为bib格式。
 2. 匹配 bib 文献数据库的期刊名称，用上面建立的全名->缩写名规则替换。
 
 ### 数据库获取
-在[UBC大学的图书馆](http://woodward.library.ubc.ca/research-help/journal-abbreviations/)网站上下载了一份包含期刊全名和缩写名对应的html源码。
+在[UBC大学的图书馆](http://woodward.library.ubc.ca/research-help/journal-abbreviations/)网站上下载了一份包含期刊全名和对应缩写名的html源码。
 通过Mathematica强大的模式匹配提取了其中的期刊名称和对应缩写，并存储为二维数组，第一列为全名，第二列为其对应缩写。
 观察html源码，最后分两种模式提取期刊名称，代码如下：
 

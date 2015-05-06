@@ -61,7 +61,7 @@
 <li>匹配 bib 文献数据库的期刊名称，用上面建立的全名-&gt;缩写名规则替换。</li>
 </ol>
 <h3>数据库获取</h3>
-<p>在<a href="http://woodward.library.ubc.ca/research-help/journal-abbreviations/">UBC大学的图书馆</a>网站上下载了一份包含期刊全名和缩写名对应的html源码。
+<p>在<a href="http://woodward.library.ubc.ca/research-help/journal-abbreviations/">UBC大学的图书馆</a>网站下载一份包含期刊全名和对应缩写名的html源码。
 通过Mathematica强大的模式匹配提取了其中的期刊名称和对应缩写，并存储为二维数组，第一列为全名，第二列为其对应缩写。
 观察html源码，最后分两种模式提取期刊名称，代码如下：</p>
 <div class="highlight"><pre>journalsPart1 = 

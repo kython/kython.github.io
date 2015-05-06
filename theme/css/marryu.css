@@ -74,7 +74,8 @@ body {
 
 .jumbotron .container {
   position: relative;
-  top: auto;
+  /*top: auto;*/
+  bottom: -40px;
   left: auto;
   right: auto;
 }

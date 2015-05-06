@@ -82,6 +82,7 @@ a:focus {
 .content {
 	padding: 1em;
 	text-align: justify;
+	text-justify: inter-ideograph;
 }
 
 .post {
