@@ -55,10 +55,10 @@
 <p>用微云网盘在多个终端同步文件，可能因为某种网络原因或者网盘自身bug导致产生了大量冗余冲突文件，分布在你网盘的各个文件夹内，如 filename(与kython-PC的冲突版本).docx、20131012(0).jpg 等等。手动删除是不现实的。</p>
 <h3>Mathematica 发威</h3>
 <p>这里给出一段代码，是刚刚发现自己网盘相册中很多相片被复制了很多副本(多达400多份)，类似这样 20131012(0).JPG、20131012(1).JPG、20131012(2).JPG  等等，我想把这些文件删掉。于是有了下面这段 <em>Mathematica</em> 代码：</p>
-<div class="highlight"><pre><span class="nt">dir</span> <span class="o">=</span> <span class="s2">&quot;F:\\Weiyun Album&quot;</span><span class="o">;</span>
-<span class="nt">SetDirectory</span><span class="cp">[</span><span class="nb">dir</span><span class="cp">]</span><span class="o">;</span>
-<span class="nt">files</span> <span class="o">=</span> <span class="nt">FileNames</span><span class="cp">[</span><span class="s2">&quot;*(*).JPG&quot;</span><span class="cp">]</span><span class="o">;</span>
-<span class="nt">DeleteFile</span><span class="cp">[</span><span class="nx">files</span><span class="cp">]</span>
+<div class="highlight"><pre><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;F:\\Weiyun Album&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">SetDirectory</span><span class="p">[</span><span class="n">dir</span><span class="p">];</span><span class="w"></span>
+<span class="n">files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FileNames</span><span class="p">[</span><span class="s">&quot;*(*).JPG&quot;</span><span class="p">];</span><span class="w"></span>
+<span class="n">DeleteFile</span><span class="p">[</span><span class="n">files</span><span class="p">]</span><span class="w"></span>
 </pre></div>
 
 
