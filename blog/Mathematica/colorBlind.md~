@@ -1,0 +1,24 @@
+Title: 色盲测试
+Date: 2015-05-12 14:38:55
+Categories: Mathematica
+Tags: Mahtematica
+Summary: 由于是色盲测试，就是测验被测试者对某种颜色的敏感程度。于是很自然想到可以用Mathematica的ColorSeparate函数把图片的不同颜色通道剥离出来，再结合阈值提取应该能很容易地排除掉背景噪声干扰。
+
+今天影姐发来一组测试色盲的题，答对了14道，正确率90%。
+其中有一道晃眼看还是稍微有难度的，如下图所示：
+
+<img class="img-thumbnail img-responsive center-block" src="http://cl.ly/image/1x2k28362u0D/4.gif">
+
+由于是色盲测试，就是测验被测试者对某种颜色的敏感程度。于是很自然想到可以用Mathematica的ColorSeparate函数把图片的不同颜色通道剥离出来，再结合阈值提取应该能很容易地排除掉背景噪声干扰。
+果然，一行代码搞定：
+```
+Binarize[ColorNegate@Last@ColorSeparate[colorBlindImg, "CMYK"], 0.7]
+```
+
+输出效果如下：
+
+<div style="text-align:center"><img src="http://cl.ly/image/02103d3e0t2G/colorBlindImg.jpg"></div>
+
+是不是很酷，:)
+
+

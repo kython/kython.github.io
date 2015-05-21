@@ -61,8 +61,14 @@
 <li>匹配 bib 文献数据库的期刊名称，用上面建立的全名-&gt;缩写名规则替换。</li>
 </ol>
 <h3>数据库获取</h3>
-<p>在<a href="http://woodward.library.ubc.ca/research-help/journal-abbreviations/">UBC大学的图书馆</a>网站下载一份包含期刊全名和对应缩写名的html源码。
-通过Mathematica强大的模式匹配提取了其中的期刊名称和对应缩写，并存储为二维数组，第一列为全名，第二列为其对应缩写。
+<p>在<a href="http://woodward.library.ubc.ca/research-help/journal-abbreviations/">UBC大学的图书馆</a>网站下载一份包含期刊全名和对应缩写名的html源码。部分代码如下：</p>
+<div class="highlight"><pre>......
+<span class="nt">&lt;td&gt;</span>2D Mater.<span class="nt">&lt;/td&gt;&lt;td&gt;</span>2D Materials <span class="nt">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td</span> <span class="na">class=</span><span class="s">&quot;nav&quot;</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">style=</span><span class="s">&quot;text-align: center; background-color: rgb(255, 187, 136);&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">id=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;</span> <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#jatop&quot;</span> <span class="na">class=</span><span class="s">&quot;small&quot;</span> <span class="na">title=</span><span class="s">&quot;back to top&quot;</span> <span class="na">style=</span><span class="s">&quot;font-size: x-small;&quot;</span><span class="nt">&gt;</span>top<span class="nt">&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr</span> <span class="na">style=</span><span class="s">&quot;background-color: rgb(221, 221, 221);&quot;</span><span class="nt">&gt;&lt;td&gt;</span>3D Print. Addit. Manuf.<span class="nt">&lt;/td&gt;&lt;td&gt;</span>3D Printing and Additive Manufacturing<span class="nt">&lt;/td&gt;</span>
+......
+</pre></div>
+
+
+<p>通过Mathematica强大的模式匹配提取了其中的期刊名称和对应缩写，并存储为二维数组，第一列为全名，第二列为其对应缩写。
 观察html源码，最后分两种模式提取期刊名称，代码如下：</p>
 <div class="highlight"><pre><span class="n">journalsPart1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
 <span class="w">  </span><span class="n">Rest</span><span class="o">@</span><span class="n">StringCases</span><span class="p">[</span><span class="n">downloadedHtmlContent</span><span class="p">,</span><span class="w"> </span>
