@@ -37,6 +37,10 @@ a:focus {
     	height: 7em;
 }
 
+.brand-title {
+	font-weight: bold;
+}
+
 .brand-title a {
 	color: #000000;
 }
