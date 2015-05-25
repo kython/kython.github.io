@@ -17,14 +17,9 @@ Summary: 平时文献多是通过Google Scholar收集，导出为bib格式。这
 ### 数据库获取
 在[UBC大学的图书馆](http://woodward.library.ubc.ca/research-help/journal-abbreviations/)网站下载一份包含期刊全名和对应缩写名的html源码。部分代码如下：
 ```html
-...
-<td>2D Mater.</td><td>2D Materials </td></tr><tr><td class="nav" \
-colspan="2" style="text-align: center; background-color: rgb(255, \
-187, 136);"><a id="3">3</a> <a href="#jatop" class="small" \
-title="back to top" style="font-size: x-small;">top</a></td></tr><tr \
-style="background-color: rgb(221, 221, 221);"><td>3D Print. Addit. \
-Manuf.</td><td>3D Printing and Additive Manufacturing</td>
-...
+......
+<td>2D Mater.</td><td>2D Materials </td></tr><tr><td class="nav" colspan="2" style="text-align: center; background-color: rgb(255, 187, 136);"><a id="3">3</a> <a href="#jatop" class="small" title="back to top" style="font-size: x-small;">top</a></td></tr><tr style="background-color: rgb(221, 221, 221);"><td>3D Print. Addit. Manuf.</td><td>3D Printing and Additive Manufacturing</td>
+......
 ```
 通过Mathematica强大的模式匹配提取了其中的期刊名称和对应缩写，并存储为二维数组，第一列为全名，第二列为其对应缩写。
 观察html源码，最后分两种模式提取期刊名称，代码如下：

@@ -88,6 +88,22 @@ a:focus {
 	border-bottom: 1px dashed #D9D9D9;
 }
 
+/*.post-title {
+	font-weight: 500;
+	font-size: 24px;
+}
+
+.post-summary {
+	font-size: 15px;
+	color: #717171;
+	font-weight: 100;
+}
+
+.post-meta {
+	font-size: 14px;
+	color: #717171;
+}*/
+
 /*.article-cover {
 	width:420px;
 	height: 420px;
@@ -162,6 +178,5 @@ a:focus {
 		max-width: 1000px;
 		margin: 0 auto;
 	}
-
 
 }
