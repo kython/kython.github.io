@@ -1,0 +1,99 @@
+Title: 用串口通信实时读取Arduino采集到的环境温度
+Date: 2015-05-30 13:11:17
+Categories: Mathematica
+Tags: Mahtematica, Arduino
+Summary: Arduino有众多的传感器扩展，可以采集物理世界丰富的数据。再搭配上Mathematica超强的数据操作和可视化，将采集到的数据通过串口通信实时传输给Mathematica，想想就好玩。
+
+今天周末，在家里鼓捣了一个用Mathematica实时读取Arduino采集到的室内温度的小项目。
+
+### Arduino部署
+
+Arduino的板子用的UNO，温度传感器是廉价的LM35，精度不高，1摄氏度范围内。硬件连接部分可以参考下面的Arduino代码。
+
+```c
+//LM35温度器的连接图，当半圆形对着我们时，左边一个为Vs，右边为GND
+float sinVal;
+int toneVal;
+int alarmPin=11;
+int lm35Pin=0;
+
+
+void setup(){
+  pinMode(alarmPin,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop(){
+  int vtg; //用于存储LM35读取到的电压值
+  double temperature; //用于存储已转换的温度值
+  vtg=analogRead(lm35Pin);
+  temperature=vtgToTemp(vtg);
+
+  if(temperature>27){
+    for(int x=0; x<180; x++){
+    //将角度转化为弧度
+    sinVal=sin(x*(3.1415/180));
+    //产生声音频率
+    toneVal=2000+int(sinVal+1000);
+    tone(alarmPin,toneVal,100);
+    delay(10);
+    }
+  }
+  else{
+    noTone(8);
+  }
+
+  Serial.print("Temperature:");
+  Serial.print(temperature);
+  Serial.println("C");
+
+  delay(10000);  //间隔10s做温度检测
+  
+}
+
+double vtgToTemp(int vtg){
+  return (double) vtg*5/10.24;
+}
+
+```
+
+
+### Mathematica部署
+
+1. 通过串口通信，连接Arduino设备。
+```mma
+port = "COM3";
+arduino = DeviceOpen["Serial", {port, "BaudRate" -> 9600}]
+```
+
+2. 定时读取Arduino采集到的温度。
+```mma
+tempTimeSeries = {};
+
+RunScheduledTask[
+ temp = ToExpression@
+   FromCharacterCode[
+    DeviceReadBuffer[arduino, "ReadTerminator" -> "\n"]];
+ AppendTo[tempTimeSeries, {DateList[], temp}], 2]
+```
+
+3. 实时室内环境温度绘图。
+```mma
+Dynamic[
+ DateListPlot[
+  tempTimeSeries,
+  PlotTheme -> "Market",
+  BaseStyle -> {18, Bold},
+  FrameLabel -> {"Time", "Temperature (\[Degree]C)"},
+  ImageSize -> Large
+  ]
+ ]
+```
+
+抓取的一张实时动态图。
+
+<img class="img-thumbnail img-responsive center-block" src="http://cl.ly/image/0n471Q2F3W1r/lm35plot.png">
+
+想想将来所有的家用电器都开放API，当检测到室内温度过高或过低，就自动启动空调。当检测到室内空气质量差，就自动启动空气净化器。当花园里我栽培的那盆心爱的植物干渴的时候，就自动给它浇水。
+
+生活真美好。

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="description" content="Share my story with you"> -->
+
+    <title>Kython Liao</title>
+
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <!-- <link rel="stylesheet" href="/theme/css/bootstrap-theme.min.css"> -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/main.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+<div class="col-xs-12 col-sm-3 col-md-2 sidebar">
+    <!-- <div class="cover-img" style="background-image:url('http://upload.jianshu.io/daily_images/images/BKx3sA9CumMFpUzQJTFx.jpg')"> -->
+        <div class="usr-meta">
+                <a href="/index.html">
+                    <img class="img-circle avatar" alt="Home" src="https://avatars2.githubusercontent.com/u/7881268?v=3&s=460">
+                </a>
+                <h3 class="brand-title text-capitalize"><a href="/">Kython Liao</a></h3>
+                <p class="brand-tagline">PHD-Candidate.<br> Enjoy Python & Mathematica.<br> Living in Shanghai.</p>
+                    <p class="menu-item"><a href="/index.html">Home</a></p>
+                    <p class="menu-item"><a href="/pages/about-me.html">About</a></p>
+                    <p class="menu-item"><a href="/pages/marryu.html">Moments</a></p>
+  
+                <p class="social">
+                        <a href="http://github.com/kython">
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
+                        <a href="http://weibo.com/abcy618">
+                            <i class="fa fa-weibo fa-2x"></i>
+                        </a>
+                <p>
+        </div>
+    <!-- </div> -->
+</div>      <div class="col-xs-12 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div class="content">
+            <div class="post">
+              <h2>用串口通信实时读取Arduino采集到的环境温度</h2>
+              <p class="post-meta">
+                // Tags:
+                  <a class="post-category" href="/tag/mahtematica.html">Mahtematica</a>
+                  <a class="post-category" href="/tag/arduino.html">Arduino</a>
+                  &middot; Created: 2015-05-30 13:11:17               </p>
+              <div><p>今天周末，在家里鼓捣了一个用Mathematica实时读取Arduino采集到的室内温度的小项目。</p>
+<h3>Arduino部署</h3>
+<p>Arduino的板子用的UNO，温度传感器是廉价的LM35，精度不高，1摄氏度范围内。硬件连接部分可以参考下面的Arduino代码。</p>
+<div class="highlight"><pre><span class="c1">//LM35温度器的连接图，当半圆形对着我们时，左边一个为Vs，右边为GND</span>
+<span class="kt">float</span> <span class="n">sinVal</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">toneVal</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">alarmPin</span><span class="o">=</span><span class="mi">11</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">lm35Pin</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">alarmPin</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(){</span>
+  <span class="kt">int</span> <span class="n">vtg</span><span class="p">;</span> <span class="c1">//用于存储LM35读取到的电压值</span>
+  <span class="kt">double</span> <span class="n">temperature</span><span class="p">;</span> <span class="c1">//用于存储已转换的温度值</span>
+  <span class="n">vtg</span><span class="o">=</span><span class="n">analogRead</span><span class="p">(</span><span class="n">lm35Pin</span><span class="p">);</span>
+  <span class="n">temperature</span><span class="o">=</span><span class="n">vtgToTemp</span><span class="p">(</span><span class="n">vtg</span><span class="p">);</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">temperature</span><span class="o">&gt;</span><span class="mi">27</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">180</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">){</span>
+    <span class="c1">//将角度转化为弧度</span>
+    <span class="n">sinVal</span><span class="o">=</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mf">3.1415</span><span class="o">/</span><span class="mi">180</span><span class="p">));</span>
+    <span class="c1">//产生声音频率</span>
+    <span class="n">toneVal</span><span class="o">=</span><span class="mi">2000</span><span class="o">+</span><span class="kt">int</span><span class="p">(</span><span class="n">sinVal</span><span class="o">+</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="n">tone</span><span class="p">(</span><span class="n">alarmPin</span><span class="p">,</span><span class="n">toneVal</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span><span class="p">{</span>
+    <span class="n">noTone</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//Serial.print(&quot;Temperature:&quot;);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span>
+  <span class="c1">//Serial.println(&quot;C&quot;);</span>
+
+  <span class="n">delay</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>  <span class="c1">//间隔10s做温度检测</span>
+
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="nf">vtgToTemp</span><span class="p">(</span><span class="kt">int</span> <span class="n">vtg</span><span class="p">){</span>
+  <span class="k">return</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">vtg</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="mf">10.24</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>Mathematica部署</h3>
+<ol>
+<li>通过串口通信，连接Arduino设备。</li>
+</ol>
+<div class="highlight"><pre><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;COM3&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">arduino</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceOpen</span><span class="p">[</span><span class="s">&quot;Serial&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BaudRate&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">9600</span><span class="p">}]</span><span class="w"></span>
+</pre></div>
+
+
+<ol>
+<li>定时读取Arduino采集到的温度。</li>
+</ol>
+<div class="highlight"><pre><span class="n">tempTimeSeries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
+
+<span class="n">RunScheduledTask</span><span class="p">[</span><span class="w"></span>
+<span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ToExpression</span><span class="o">@</span><span class="w"></span>
+<span class="w">   </span><span class="n">FromCharacterCode</span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="n">DeviceReadBuffer</span><span class="p">[</span><span class="n">arduino</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ReadTerminator&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">]];</span><span class="w"></span>
+<span class="w"> </span><span class="n">AppendTo</span><span class="p">[</span><span class="n">tempTimeSeries</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">DateList</span><span class="p">[],</span><span class="w"> </span><span class="n">temp</span><span class="p">}],</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+
+
+<ol>
+<li>实时室内环境温度绘图。</li>
+</ol>
+<div class="highlight"><pre><span class="n">Dynamic</span><span class="p">[</span><span class="w"></span>
+<span class="w"> </span><span class="n">DateListPlot</span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="n">tempTimeSeries</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">PlotTheme</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;Market&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">BaseStyle</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="n">Bold</span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="n">FrameLabel</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Time&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Temperature (\[Degree]C)&quot;</span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="n">ImageSize</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Large</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="w"> </span><span class="p">]</span><span class="w"></span>
+</pre></div>
+
+
+<p>抓取的一张实时动态图。</p>
+<p><img class="img-thumbnail img-responsive center-block" src="http://cl.ly/image/0n471Q2F3W1r/lm35plot.png"></p>
+<p>想想将来所有的家用电器都开放API，当检测到室内温度过高或过低，就自动启动空调。当检测到室内空气质量差，就自动启动空气净化器。当花园里我栽培的那盆心爱的植物干渴的时候，就自动给它浇水。</p>
+<p>生活真美好。</p></div>
+            </div>
+            <p class="go-top"><a href="#"><i class="fa fa-arrow-circle-o-up"></i> Go Top</a></p>
+          </div>
+<footer class="footer">
+    <p>
+    	&copy; 2015 Designed by Kython Liao &ndash;
+        Built with <a href="http://getbootstrap.com/">Bootstrap</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>    </div>
+  </div>
+</div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>
