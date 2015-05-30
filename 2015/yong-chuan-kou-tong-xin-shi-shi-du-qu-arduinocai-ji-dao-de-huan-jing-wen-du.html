@@ -21,7 +21,7 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-<div class="col-xs-12 col-sm-3 col-md-2 sidebar">
+<div class="col-sm-12 col-md-3 col-lg-2 sidebar">
     <!-- <div class="cover-img" style="background-image:url('http://upload.jianshu.io/daily_images/images/BKx3sA9CumMFpUzQJTFx.jpg')"> -->
         <div class="usr-meta">
                 <a href="/index.html">
@@ -43,7 +43,7 @@
                 <p>
         </div>
     <!-- </div> -->
-</div>      <div class="col-xs-12 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+</div>      <div class="col-sm-12 col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 main">
           <div class="content">
             <div class="post">
               <h2>用串口通信实时读取Arduino采集到的环境温度</h2>
@@ -52,9 +52,9 @@
                   <a class="post-category" href="/tag/mahtematica.html">Mahtematica</a>
                   <a class="post-category" href="/tag/arduino.html">Arduino</a>
                   &middot; Created: 2015-05-30 13:11:17               </p>
-              <div><p>今天周末，在家里鼓捣了一个用Mathematica实时读取Arduino采集到的室内温度的小项目。</p>
-<h3>Arduino部署</h3>
-<p>Arduino的板子用的UNO，温度传感器是廉价的LM35，精度不高，1摄氏度范围内。硬件连接部分可以参考下面的Arduino代码。</p>
+              <div><p>今天周末，在家里鼓捣了一个小项目，用MMA实时处理Arduino采集到的室内环境温度。</p>
+<h2>Arduino部署</h2>
+<p>Arduino的主板用的UNO，温度传感器是廉价的LM35，精度不高，1摄氏度范围内。硬件连接部分可以参考下面的Arduino代码。</p>
 <div class="highlight"><pre><span class="c1">//LM35温度器的连接图，当半圆形对着我们时，左边一个为Vs，右边为GND</span>
 <span class="kt">float</span> <span class="n">sinVal</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">toneVal</span><span class="p">;</span>
@@ -91,7 +91,7 @@
   <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span>
   <span class="c1">//Serial.println(&quot;C&quot;);</span>
 
-  <span class="n">delay</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>  <span class="c1">//间隔10s做温度检测</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>  <span class="c1">//采集时间间隔取10s</span>
 
 <span class="p">}</span>
 
@@ -111,7 +111,7 @@
 
 
 <ul>
-<li>定时读取Arduino采集到的温度。</li>
+<li>设置计划任务，定时读取Arduino采集到的温度。</li>
 </ul>
 <div class="highlight"><pre><span class="n">tempTimeSeries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
 
@@ -124,12 +124,12 @@
 
 
 <ul>
-<li>实时室内环境温度绘图。</li>
+<li>实时室内环境温度动态绘图。</li>
 </ul>
 <div class="highlight"><pre><span class="n">Dynamic</span><span class="p">[</span><span class="w"></span>
 <span class="w"> </span><span class="n">DateListPlot</span><span class="p">[</span><span class="w"></span>
 <span class="w">  </span><span class="n">tempTimeSeries</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">PlotTheme</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;Default&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">PlotTheme</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;Market&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="n">BaseStyle</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="n">Bold</span><span class="p">},</span><span class="w"></span>
 <span class="w">  </span><span class="n">FrameLabel</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Time&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Temperature (\[Degree]C)&quot;</span><span class="p">},</span><span class="w"></span>
 <span class="w">  </span><span class="n">ImageSize</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Large</span><span class="w"></span>
@@ -140,7 +140,7 @@
 
 <p>抓取的一张实时动态图。</p>
 <p><img class="img-thumbnail img-responsive center-block" src="http://cl.ly/image/0n471Q2F3W1r/lm35plot.png"></p>
-<p>想想将来所有的家用电器都开放API，当检测到室内温度过高或过低，就自动启动空调。当检测到室内空气质量差，就自动启动空气净化器。当花园里我栽培的那盆心爱的植物干渴的时候，就自动给它浇水。</p>
+<p>试想不久的将来，所有的家用电器都开放API，当检测到室内温度过高或过低，就自动启动空调。当检测到室内空气质量差，就自动启动空气净化器。当花园里我心爱的那棵盆栽干渴时，就自动为她浇水、施肥。</p>
 <p>生活真美好。</p></div>
             </div>
             <p class="go-top"><a href="#"><i class="fa fa-arrow-circle-o-up"></i> Go Top</a></p>
