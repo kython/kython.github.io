@@ -102,17 +102,17 @@
 
 
 <h3>Mathematica部署</h3>
-<ol>
+<ul>
 <li>通过串口通信，连接Arduino设备。</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;COM3&quot;</span><span class="p">;</span><span class="w"></span>
 <span class="n">arduino</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceOpen</span><span class="p">[</span><span class="s">&quot;Serial&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BaudRate&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">9600</span><span class="p">}]</span><span class="w"></span>
 </pre></div>
 
 
-<ol>
+<ul>
 <li>定时读取Arduino采集到的温度。</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span class="n">tempTimeSeries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
 
 <span class="n">RunScheduledTask</span><span class="p">[</span><span class="w"></span>
@@ -123,13 +123,13 @@
 </pre></div>
 
 
-<ol>
+<ul>
 <li>实时室内环境温度绘图。</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span class="n">Dynamic</span><span class="p">[</span><span class="w"></span>
 <span class="w"> </span><span class="n">DateListPlot</span><span class="p">[</span><span class="w"></span>
 <span class="w">  </span><span class="n">tempTimeSeries</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">PlotTheme</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;Market&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">PlotTheme</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;Default&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="n">BaseStyle</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="n">Bold</span><span class="p">},</span><span class="w"></span>
 <span class="w">  </span><span class="n">FrameLabel</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Time&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Temperature (\[Degree]C)&quot;</span><span class="p">},</span><span class="w"></span>
 <span class="w">  </span><span class="n">ImageSize</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Large</span><span class="w"></span>

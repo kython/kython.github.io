@@ -43,9 +43,9 @@ void loop(){
     noTone(8);
   }
 
-  Serial.print("Temperature:");
+  //Serial.print("Temperature:");
   Serial.print(temperature);
-  Serial.println("C");
+  //Serial.println("C");
 
   delay(10000);  //间隔10s做温度检测
   
@@ -60,13 +60,13 @@ double vtgToTemp(int vtg){
 
 ### Mathematica部署
 
-1. 通过串口通信，连接Arduino设备。
+* 通过串口通信，连接Arduino设备。
 ```mma
 port = "COM3";
 arduino = DeviceOpen["Serial", {port, "BaudRate" -> 9600}]
 ```
 
-2. 定时读取Arduino采集到的温度。
+* 定时读取Arduino采集到的温度。
 ```mma
 tempTimeSeries = {};
 
@@ -77,7 +77,7 @@ RunScheduledTask[
  AppendTo[tempTimeSeries, {DateList[], temp}], 2]
 ```
 
-3. 实时室内环境温度绘图。
+* 实时室内环境温度绘图。
 ```mma
 Dynamic[
  DateListPlot[
