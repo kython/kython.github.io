@@ -45,6 +45,10 @@ a:focus {
 	color: #000000;
 }
 
+.brand-title a:hover {
+	color: #d9534f;
+}
+
 .brand-tagline {
 	margin-bottom: 1.5em;
 	font-size: 0.8em;

@@ -61,7 +61,6 @@
 <span class="kt">int</span> <span class="n">alarmPin</span><span class="o">=</span><span class="mi">11</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">lm35Pin</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-
 <span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
   <span class="n">pinMode</span><span class="p">(</span><span class="n">alarmPin</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>
   <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
@@ -88,7 +87,7 @@
   <span class="p">}</span>
 
   <span class="c1">//Serial.print(&quot;Temperature:&quot;);</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">temperature</span><span class="p">);</span>
   <span class="c1">//Serial.println(&quot;C&quot;);</span>
 
   <span class="n">delay</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>  <span class="c1">//采集时间间隔取10s</span>
@@ -96,7 +95,7 @@
 <span class="p">}</span>
 
 <span class="kt">double</span> <span class="nf">vtgToTemp</span><span class="p">(</span><span class="kt">int</span> <span class="n">vtg</span><span class="p">){</span>
-  <span class="k">return</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">vtg</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="mf">10.24</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">vtg</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="mf">10.24</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -114,7 +113,6 @@
 <li>设置计划任务，定时读取Arduino采集到的温度。</li>
 </ul>
 <div class="highlight"><pre><span class="n">tempTimeSeries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
-
 <span class="n">RunScheduledTask</span><span class="p">[</span><span class="w"></span>
 <span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ToExpression</span><span class="o">@</span><span class="w"></span>
 <span class="w">   </span><span class="n">FromCharacterCode</span><span class="p">[</span><span class="w"></span>
@@ -138,9 +136,9 @@
 </pre></div>
 
 
-<p>抓取的一张实时动态图。</p>
+<p>随意抓取的一张图。</p>
 <p><img class="img-thumbnail img-responsive center-block" src="http://cl.ly/image/0n471Q2F3W1r/lm35plot.png"></p>
-<p>试想不久的将来，所有的家用电器都开放API，当检测到室内温度过高或过低，就自动启动空调。当检测到室内空气质量差，就自动启动空气净化器。当花园里我心爱的那棵盆栽干渴时，就自动为她浇水、施肥。</p>
+<p>试想不久的将来，所有的家用电器都开放API，当检测到室内温度过高或过低，就自动启动空调。当检测到室内空气质量差，就自动启动空气净化器。当花园里我心爱的那棵盆栽干渴时，就自动为她浇水。</p>
 <p>生活真美好。</p></div>
             </div>
             <p class="go-top"><a href="#"><i class="fa fa-arrow-circle-o-up"></i> Go Top</a></p>
